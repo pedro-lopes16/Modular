@@ -1,0 +1,34 @@
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.BeforeEach;
+
+public class AlunoTeste {
+    Aluno aluno1;
+    @BeforeEach
+    public void setUp(){
+        aluno1 = new Aluno("Lucas", 12345);
+    }
+    @Test
+    public void alunoEstaAprovado(){
+        //Act
+        aluno1.calculaNota(10d);
+        aluno1.calculaNota(17d);
+        aluno1.calculaNota(22d);
+        aluno1.calculaNota(12d);
+        boolean resultado = aluno1.estaAprovado();
+        //Assert
+        assertEquals(true, resultado);
+    }
+
+    @Test
+    public void alunoEstaReprovado(){
+        //Act
+        aluno1.calculaNota(10d);
+        aluno1.calculaNota(12d);
+        aluno1.calculaNota(6d);
+        aluno1.calculaNota(13d);
+        boolean resultado = aluno1.estaAprovado();
+        //Assert
+        assertEquals(false, resultado);
+    }
+}
